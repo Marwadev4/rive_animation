@@ -1,8 +1,6 @@
 import 'package:rive_animation/animation_enum.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rive/rive.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -22,6 +20,37 @@ class _StoryAnimationState extends State<StoryAnimation> {
   late RiveAnimationController growController;
 
   final player = AudioPlayer();
+
+  void removeAllControllers() {
+    riveArtboard?.artboard.removeController(waterController);
+    riveArtboard?.artboard.removeController(cow2Controller);
+    riveArtboard?.artboard.removeController(grassController);
+    riveArtboard?.artboard.removeController(growController);
+  }
+
+  void waterControllerController() {
+    removeAllControllers();
+    riveArtboard?.artboard.addController(waterController);
+    debugPrint('waterController');
+  }
+
+  void cow2ControllerController() {
+    removeAllControllers();
+    riveArtboard?.artboard.addController(cow2Controller);
+    debugPrint('cow2Controller');
+  }
+
+  void grassControllerController() {
+    removeAllControllers();
+    riveArtboard?.artboard.addController(grassController);
+    debugPrint('grassController');
+  }
+
+  void growControllerController() {
+    removeAllControllers();
+    riveArtboard?.artboard.addController(growController);
+    debugPrint('growController');
+  }
 
   @override
   void initState() {
@@ -44,24 +73,45 @@ class _StoryAnimationState extends State<StoryAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    if (riveArtboard != null) player.play();
-
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Story'),
-      ),
+      appBar: AppBar(title: const Text('Rive Animation')),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height / 20),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
+              height: MediaQuery.of(context).size.height / 2,
               child: riveArtboard == null
-                  ? const SizedBox.shrink()
-                  : Rive(
-                      artboard: riveArtboard!,
-                    ),
+                  ? const CircularProgressIndicator()
+                  : Rive(artboard: riveArtboard!),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 30,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    waterControllerController();
+                  },
+                  icon: Icon(Icons.water),
+                ),
+                IconButton(
+                  onPressed: () {
+                    grassControllerController();
+                  },
+                  icon: Icon(Icons.grass),
+                ),
+                IconButton(
+                  onPressed: () {
+                    player.play();
+                    growControllerController();
+                  },
+                  icon: Icon(Icons.arrow_upward),
+                ),
+              ],
             ),
           ],
         ),
