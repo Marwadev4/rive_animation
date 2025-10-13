@@ -149,71 +149,73 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
-              child: riveArtboard == null
-                  ? const SizedBox.shrink()
-                  : Rive(
-                      artboard: riveArtboard!,
-                    ),
-            ),
-            Form(
-              key: key,
-              child: Column(
-                children: [
-                  TextFormField(
-                    onChanged: (value) {
-                      if (value.isNotEmpty && value.length < 16 && !isLookingLeft) {
-                        addLookDownLeftController();
-                      }
-                      if (value.isNotEmpty && value.length > 16 && !isLookingRight) {
-                        addLookDownRightController();
-                      }
-                    },
-                    validator: (value) => value != testEmail ? "wrong email" : null,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 3,
+                child: riveArtboard == null
+                    ? const SizedBox.shrink()
+                    : Rive(
+                        artboard: riveArtboard!,
+                      ),
+              ),
+              Form(
+                key: key,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      onChanged: (value) {
+                        if (value.isNotEmpty && value.length < 16 && !isLookingLeft) {
+                          addLookDownLeftController();
+                        }
+                        if (value.isNotEmpty && value.length > 16 && !isLookingRight) {
+                          addLookDownRightController();
+                        }
+                      },
+                      validator: (value) => value != testEmail ? "wrong email" : null,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 25,
-                  ),
-                  TextFormField(
-                    validator: (value) => value != testPassword ? "wrong password" : null,
-                    obscureText: true,
-                    focusNode: passwordFocusNode,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 25,
+                    ),
+                    TextFormField(
+                      validator: (value) => value != testPassword ? "wrong password" : null,
+                      obscureText: true,
+                      focusNode: passwordFocusNode,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 18,
-                  ),
-                ],
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 18,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: validatePasswordAndEmail,
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(vertical: 24),
+              ElevatedButton(
+                onPressed: validatePasswordAndEmail,
+                style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
               ),
-              child: const Text(
-                'Login',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
