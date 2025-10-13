@@ -23,8 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late RiveAnimationController lookIdleController;
 
   final key = GlobalKey<FormState>();
-  String testEmail = 'marwa@gmail.com';
-  String testPassword = 'marwa_dev';
+  String testEmail = 'marwa.mohammed.jasim@gmail.com';
+  String testPassword = '123456';
 
   final passwordFocusNode = FocusNode();
 
@@ -124,7 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
     handsDownController = SimpleAnimation(AnimationEnum.hands_down.name);
     successController = SimpleAnimation(AnimationEnum.success.name);
     failController = SimpleAnimation(AnimationEnum.fail.name);
-    lookDownRightController = SimpleAnimation(AnimationEnum.Look_down_right.name);
+    lookDownRightController = SimpleAnimation(
+      AnimationEnum.Look_down_right.name,
+    );
     lookDownLeftController = SimpleAnimation(AnimationEnum.Look_down_left.name);
     lookIdleController = SimpleAnimation(AnimationEnum.look_idle.name);
     rootBundle.load("assets/animation_login.riv").then((data) {
@@ -144,11 +146,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Animated Login'),
-      ),
+      appBar: AppBar(title: const Text('Animated Login')),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 20),
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width / 20,
+        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -157,9 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: MediaQuery.of(context).size.height / 3,
                 child: riveArtboard == null
                     ? const SizedBox.shrink()
-                    : Rive(
-                        artboard: riveArtboard!,
-                      ),
+                    : Rive(artboard: riveArtboard!),
               ),
               Form(
                 key: key,
@@ -167,14 +167,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextFormField(
                       onChanged: (value) {
-                        if (value.isNotEmpty && value.length < 16 && !isLookingLeft) {
+                        if (value.isNotEmpty &&
+                            value.length < 16 &&
+                            !isLookingLeft) {
                           addLookDownLeftController();
                         }
-                        if (value.isNotEmpty && value.length > 16 && !isLookingRight) {
+                        if (value.isNotEmpty &&
+                            value.length > 16 &&
+                            !isLookingRight) {
                           addLookDownRightController();
                         }
                       },
-                      validator: (value) => value != testEmail ? "wrong email" : null,
+                      validator: (value) =>
+                          value != testEmail ? "wrong email" : null,
                       decoration: InputDecoration(
                         labelText: 'Email',
                         border: OutlineInputBorder(
@@ -182,11 +187,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 25,
-                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height / 25),
                     TextFormField(
-                      validator: (value) => value != testPassword ? "wrong password" : null,
+                      validator: (value) =>
+                          value != testPassword ? "wrong password" : null,
                       obscureText: true,
                       focusNode: passwordFocusNode,
                       decoration: InputDecoration(
@@ -196,9 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 18,
-                    ),
+                    SizedBox(height: 18),
                   ],
                 ),
               ),
@@ -207,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: ElevatedButton.styleFrom(
                   shape: const StadiumBorder(),
                   backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                 ),
                 child: const Text(
                   'Login',
