@@ -56,6 +56,8 @@ class _StoryAnimationState extends State<StoryAnimation> {
   void initState() {
     super.initState();
     player.setAsset("assets/cow_song.mp3");
+    player.setSpeed(1.0);
+    player.play();
     waterController = SimpleAnimation(CowAnimationEnum.water.name);
     cow2Controller = SimpleAnimation(CowAnimationEnum.cow2.name);
     grassController = SimpleAnimation(CowAnimationEnum.grass.name);
@@ -92,24 +94,39 @@ class _StoryAnimationState extends State<StoryAnimation> {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 30,
               children: [
-                IconButton(
-                  onPressed: () {
-                    waterControllerController();
-                  },
-                  icon: Icon(Icons.water),
+                Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        waterControllerController();
+                      },
+                      icon: Icon(Icons.water),
+                    ),
+                    Text("Water"),
+                  ],
                 ),
-                IconButton(
-                  onPressed: () {
-                    grassControllerController();
-                  },
-                  icon: Icon(Icons.grass),
+                Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        grassControllerController();
+                      },
+                      icon: Icon(Icons.grass),
+                    ),
+                    Text("Grass"),
+                  ],
                 ),
-                IconButton(
-                  onPressed: () {
-                    player.play();
-                    growControllerController();
-                  },
-                  icon: Icon(Icons.arrow_upward),
+                Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        player.play();
+                        growControllerController();
+                      },
+                      icon: Icon(Icons.arrow_upward),
+                    ),
+                    Text("Grow"),
+                  ],
                 ),
               ],
             ),

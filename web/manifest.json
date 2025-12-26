@@ -1,6 +1,6 @@
 {
-    "name": "riva_a",
-    "short_name": "riva_a",
+    "name": "rive_animation",
+    "short_name": "rive_animation",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
