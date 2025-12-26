@@ -1,73 +1,87 @@
-# `story_animation.dart` — Documentation
 
-This document describes the `StoryAnimation` widget implemented in `lib/story_animation.dart`. The widget demonstrates how to load a Rive file, control multiple animation controllers, and optionally play audio alongside animations.
+# Rive + Flutter — Drive Animations
 
-## What it does
+This project demonstrates using Rive animations in a Flutter app. It includes example widgets for a login animation and a story-driven animation using Rive assets found in the `assets/` folder.
 
-- Loads `assets/cow.riv` at startup and attaches a default Rive animation controller.
-- Provides methods to switch between four animation controllers: `water`, `cow2`, `grass`, and `grow`.
-- Plays an audio asset (`assets/cow_song.mp3`) using `just_audio` when the grow animation is triggered.
+**Overview**
+- **Project:** Rive animations integrated into Flutter
+- **Key files:** `lib/story_animation.dart`, `lib/login_screen.dart`
+- **Assets:** `assets/animation_login.riv`, `assets/cow.riv`
 
-## Key API
+**Features**
+- Load and play Rive `.riv` files from assets
+- Widgetized animations to drop into screens (`StoryAnimation`, `LoginScreen`)
 
-- `class StoryAnimation extends StatefulWidget` — main widget to insert into your widget tree.
-
-Inside `_StoryAnimationState` you'll find utility methods (all internal):
-
-- `removeAllControllers()` — removes all registered Rive controllers from the artboard.
-- `waterControllerController()` — switches active controller to the `water` animation.
-- `cow2ControllerController()` — switches to `cow2` animation.
-- `grassControllerController()` — switches to `grass` animation.
-- `growControllerController()` — switches to `grow` animation and (in the current implementation) plays the audio via `player.play()`.
-
-The state initializes controllers in `initState()` using `SimpleAnimation(CowAnimationEnum.<name>.name)`, so the Rive state names are driven by `CowAnimationEnum` from `lib/animation_enum.dart`.
-
-## Usage
-
-Add the widget to your app (simple example in `main.dart`):
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:rive_animation/story_animation.dart';
-
-void main() => runApp(const MaterialApp(home: StoryAnimation()));
-```
-
-This will present the Rive artboard and three IconButtons that switch animations and trigger audio for the grow action.
-
-## Dependencies
-
-Ensure the following packages are included in your `pubspec.yaml`:
+**Dependencies**
+Add the Rive package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
 	flutter:
 		sdk: flutter
 	rive: ^0.10.0
-	just_audio: ^0.9.0
 ```
 
-Adjust the versions to the latest compatible releases.
-
-## Assets
-
-The widget expects these assets (add them to `pubspec.yaml` under `flutter.assets`):
+Also ensure your `pubspec.yaml` lists the assets:
 
 ```yaml
-assets:
-	- assets/cow.riv
-	- assets/cow_song.mp3  # optional: used for the grow action
+flutter:
+	assets:
+		- assets/animation_login.riv
+		- assets/cow.riv
 ```
 
-If you don't want audio, either remove the `player` usage or omit `cow_song.mp3` and the related `player.play()` call.
+**How to use**
+- Import and use the prebuilt widgets in your app:
 
-## Notes & Troubleshooting
+```dart
+import 'package:rive/rive.dart';
+import 'story_animation.dart';
+import 'login_screen.dart';
 
-- If the artboard doesn't show, ensure `assets/cow.riv` exists and is referenced in `pubspec.yaml` and run `flutter pub get`.
-- The code uses `SimpleAnimation` with names taken from `CowAnimationEnum`; make sure your `.riv` animation/state names match those enum values.
-- If audio doesn't play, verify `assets/cow_song.mp3` exists, and check permissions/configuration for the target platform.
+// Example usage inside a Flutter build method
+@override
+Widget build(BuildContext context) {
+	return MaterialApp(
+		home: Scaffold(
+			body: Center(
+				child: LoginScreen(), // uses assets/animation_login.riv
+			),
+		),
+	);
+}
+```
 
-## Suggestions
+- Use `StoryAnimation` where you want to show longer or state-driven animations (see `lib/story_animation.dart`).
 
-- Consider refactoring the controller-switching methods into a single method that accepts an enum/value to avoid repetition.
-- Expose a constructor parameter to allow callers to supply an alternate asset path or to disable audio for easier reuse and testing.
+**Notes about `lib/story_animation.dart` and `lib/login_screen.dart`**
+- `login_screen.dart` is intended as a self-contained login UI that plays the `animation_login.riv` file. It should handle input and trigger simple Rive state changes.
+- `story_animation.dart` is intended to host a sequence or interactive animation (for example using `cow.riv`). It should expose a widget (e.g., `StoryAnimation`) that can be placed into layouts.
+
+If you want, I can open and add inline README sections showing the exact constructors and methods used in those files.
+
+**Run the app**
+
+1. Get dependencies:
+
+```bash
+flutter pub get
+```
+
+2. Run on a device or emulator:
+
+```bash
+flutter run
+```
+
+**Debugging tips**
+- If an asset fails to load, confirm the path in `pubspec.yaml` and that the file exists under `assets/`.
+- Use the Rive editor to inspect artboard names and state machine names; ensure the names used in code match.
+
+**Next steps**
+- Add README examples showing the exact API used in `lib/story_animation.dart` and `lib/login_screen.dart`.
+- Include screenshots or an animated GIF demonstrating the animations in action.
+
+---
+Generated: updated README for Rive + Flutter usage.
+
