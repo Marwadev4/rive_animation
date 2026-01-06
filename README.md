@@ -28,7 +28,7 @@ This project demonstrates using Rive animations in a Flutter app. It includes ex
 </div>
 
 ### StoryAnimation
-<img src="https://github.com/user-attachments/assets/34abec75-5b6e-4401-88e6-47ac3eb20870" alt="Screenshot 3" style="max-width: 200px; width: 100%;">
+<img src="https://github.com/user-attachments/assets/34abec75-5b6e-4401-88e6-47ac3eb20870" alt="Screenshot 3" style="width: 200px; height: 400;">
 
 **Dependencies**
 Add the Rive package to your `pubspec.yaml`:
