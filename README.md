@@ -13,16 +13,22 @@ This project demonstrates using Rive animations in a Flutter app. It includes ex
 - Widgetized animations to drop into screens (`StoryAnimation`, `LoginScreen`)
 
 ## 📱 Screenshots
-LoginScreen
-![photo_2026-01-06_18-13-38](https://github.com/user-attachments/assets/b230366d-7798-443e-ab0f-f6da49effcef)
-![photo_2026-01-06_18-13-39](https://github.com/user-attachments/assets/614d0c5f-74f5-46fa-aecb-e6c309600b56)
-![photo_2026-01-06_18-13-40](https://github.com/user-attachments/assets/47dc1488-b491-4033-8272-d3956f58ae83)
-![photo_2026-01-06_18-13-41](https://github.com/user-attachments/assets/79d30677-9cd0-4639-b5c0-cbfae7b94bfd)
-![photo_2026-01-06_18-13-42](https://github.com/user-attachments/assets/a25577fc-1708-4bc3-a6f5-fb83034e3c4e)
 
-StoryAnimation
-![photo_2026-01-06_18-10-37](https://github.com/user-attachments/assets/34abec75-5b6e-4401-88e6-47ac3eb20870)
+### LoginScreen
+<div style="overflow-x: auto;">
+  <table>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/b230366d-7798-443e-ab0f-f6da49effcef" alt="Screenshot 1" style="max-width: 200px; width: 100%;"></td>
+      <td><img src="https://github.com/user-attachments/assets/614d0c5f-74f5-46fa-aecb-e6c309600b56" alt="Screenshot 2" style="max-width: 200px; width: 100%;"></td>
+      <td><img src="https://github.com/user-attachments/assets/47dc1488-b491-4033-8272-d3956f58ae83" alt="Screenshot 3" style="max-width: 200px; width: 100%;"></td>
+      <td><img src="https://github.com/user-attachments/assets/79d30677-9cd0-4639-b5c0-cbfae7b94bfd" alt="Screenshot 4" style="max-width: 200px; width: 100%;"></td>
+      <td><img src="https://github.com/user-attachments/assets/a25577fc-1708-4bc3-a6f5-fb83034e3c4e" alt="Screenshot 5" style="max-width: 200px; width: 100%;"></td>
+    </tr>
+  </table>
+</div>
 
+### StoryAnimation
+<img src="https://github.com/user-attachments/assets/34abec75-5b6e-4401-88e6-47ac3eb20870" alt="Screenshot 3" style="max-width: 200px; width: 100%;">
 
 **Dependencies**
 Add the Rive package to your `pubspec.yaml`:
